@@ -1,0 +1,73 @@
+// ESTILOS PAGINA EJERCICIOS
+
+
+// contenedor ejercicios resultado búsqueda por nombre
+.resultado-ejercicio {
+    display: flex;
+    justify-content: space-between;
+    background-color: red;
+    border-radius: 10px;
+    background-color: #666666;
+    margin-bottom: 20px;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+
+    span {
+        display: inline-flex; /* Hace que el span use Flexbox */
+        align-items: center; /* Centra verticalmente */
+        justify-content: center; /* Opcional: centra horizontalmente */
+    }
+}
+
+// botones superiores de gestionar ejercicios, etiquetas y unidades
+.botones-pagina-ejercicio {
+    display: flex;
+    justify-content: left;   
+    & button {
+        margin: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+        & {
+            flex-direction: column;
+        }
+
+        & button {
+            margin: 5px;
+        }
+    }
+}
+
+.exercises-container {
+    .search > * {
+        margin: 20px 0;
+    }
+
+    .name-input label {
+        font-size: 17px;
+        margin-right: 10px;
+    }
+}
+
+
+.tags-input .contenedor-gris {
+    padding: 10px;
+    background-color: rgb(102, 102, 102) !important;
+    border-radius: 10px;
+    margin: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:has(button)) {
+        cursor: pointer !important;
+    }
+
+    color:#ff1900
+}
+
+
+
+

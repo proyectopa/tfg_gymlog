@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+
+    # comandos configuracion mysql
+    # autenticación original y quitar case sensitive
+    command: 
+      - mysqld
+      - '--lower_case_table_names=1'
+      - '--default-authentication-plugin=mysql_native_password'
+
+    # variables del .env para iniciar la bbdd
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_PORT: $MYSQL_PORT
+
+    # directorio que ejecuta scripts al iniciar
+    volumes:
+      - "./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql"
+
+  node:
+    build: .  # Ruta al Dockerfile de Node.js (en la raíz del proyecto)
+    container_name: node-app
+    restart: always
+    ports:
+      - "$EXTERNAL_PORT:$PORT"  # Mapear el puerto externo definido en EXTERNAL_PORT al puerto interno definido en PORT
+    depends_on:
+      - mysql  # Asegura que MySQL esté levantado antes de iniciar Node.js
+
+  nginx:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt

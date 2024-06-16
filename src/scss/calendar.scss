@@ -1,0 +1,256 @@
+
+// ESTILOS PAGINA CALENDARIO
+
+@font-face {
+    font-family: 'choco';
+    src: url('../fonts/choco/choco.otf');
+}
+
+
+
+*, a {
+    font-family: 'choco';
+    text-decoration: none;
+}
+
+#calendar * {
+    color: #f0eff0 !important;
+    border-radius: 10px !important;
+}
+
+
+// NUEVOS
+// que las etiquetas no sobresalgan
+.fc-day.fc-day-past.fc-daygrid-day {
+	overflow: hidden !important;
+}
+
+// borde etiquetas
+.fc-event.fc-event-start.fc-event-end.fc-event-past.fc-daygrid-event.fc-daygrid-dot-event div {
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 0px 5px;
+
+    @media screen and (max-width: 768px) {
+        & {
+            font-size: 9px;
+        }
+    }
+}
+
+.calendario-entrenamiento > * {
+    border-radius: 10px;
+
+}
+
+#calendar,
+.calendario {
+    border-radius: 10px !important;
+}
+
+.calendario-entrenamiento > * {
+    // border: 1px solid rgb(35, 25, 83) !important;
+    box-shadow: 5px 5px 0px rgba(227, 233, 255, 0.262);
+    border: 1px solid #1a1c23;
+}
+
+// variables full calendar
+:root {
+    --fc-small-font-size: .85em;
+    --fc-page-bg-color: #fff;
+    --fc-neutral-bg-color: hsla(0, 0%, 82%, .3);
+    --fc-neutral-text-color: grey;
+    --fc-border-color: rgba(0, 0, 0, 0.3);
+    --fc-button-text-color: #ffffff;
+    --fc-button-bg-color: #333f55;
+    --fc-button-border-color: transparent;
+    --fc-button-hover-bg-color: #1e2b37;
+    --fc-button-hover-border-color: rgba(255, 255, 255, .1);
+    --fc-button-active-bg-color: #252e3d;
+    --fc-button-active-border-color: transparent;
+    --fc-event-bg-color: #3788d8;
+    --fc-event-border-color: transparent;
+    --fc-event-text-color: #fff;
+    --fc-event-selected-overlay-color: rgba(0, 0, 0, .25);
+    --fc-more-link-bg-color: #d0d0d0;
+    --fc-more-link-text-color: inherit;
+    --fc-event-resizer-thickness: 8px;
+    --fc-event-resizer-dot-total-width: 8px;
+    --fc-event-resizer-dot-border-width: 1px;
+    --fc-non-business-color: hsla(0, 0%, 84%, .3);
+    --fc-bg-event-color: #8fdf82;
+    --fc-bg-event-opacity: 0.3;
+    --fc-highlight-color: rgba(188, 232, 241, .3);
+    --fc-today-bg-color: #333f55;
+    --fc-now-indicator-color: red;
+}
+ 
+/* contenedor apartado principal - calendario y entrenamiento seleccionado */
+body:has(.calendario-entrenamiento) {
+    height: fit-content;
+}
+
+main.principal:has(.calendario-entrenamiento) {
+    @media screen and (max-width: 768px) {
+        & {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+    max-width: none;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.calendario-entrenamiento {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px;
+    border-radius: 10px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+        padding: 0;
+    }
+    
+    .apartado-calendario,
+    .apartado-entrenamiento {
+        // width: 100%;
+        // max-width: 45vw;
+        // max-width: 900px;
+        background-color: #1a1c23;
+
+        width: 45vw;
+        max-width: 1000px;
+        margin: 5px; /* Añadir un margen entre los elementos */
+        box-sizing: border-box;
+        
+        // &.apartado-calendario,
+        // &.apartado-entrenamiento {
+        //     border: 1px solid rgb(47, 0, 255);
+        // }
+
+        @media screen and (max-width: 1000px) {
+            & {
+                width: 90vw;
+            }
+        }
+    }
+
+    .calendario {
+        background-color: #1a1c23;
+        height: auto;
+
+        & .fc-scrollgrid.fc-scrollgrid-liquid {
+            height: auto;
+        }
+    }
+    
+    .titulo-calendario {
+        height: 20px;
+    }
+    
+    .apartado-entrenamiento {
+        min-height: 600px;
+        background-color: #1a1c23;
+        padding: 30px;
+        
+        .mensaje-calendario  {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+
+            & span {
+                font-size: 25px;
+                margin-left: 7px;
+            }
+        }
+
+        .ejercicios {
+            padding: 20px 0;
+            
+            .ejercicio {
+                border-radius: 10px;
+                background-color: #333f55;
+                margin-bottom: 20px;
+                padding: 10px;
+                
+                p {
+                    border-bottom: 1px solid #f0eff0;
+                }
+                
+                .serie {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+.input-editar-series, .botones-editar-series {
+    width: 100% !important;
+    display: flex;
+    
+    button {
+        margin: 5px 0;
+        margin-right: 5px;
+    }
+
+    label {
+        box-sizing: border-box;
+        width: 50%;
+        input {
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+}
+
+// .ejercicio .nombre div.serie div.serie-seleccionable.serie, .div.serie-seleccionable.selected {
+//     justify-content: left !important;
+//     border: 3px solid red !important;
+// }
+
+.serie.serie-seleccionable.selected {
+    background-color: rgba(255, 255, 255, 0.152);
+}
+
+
+
+.botones-editar-series {
+    margin-left: 5px;
+}
+
+.modal-ej {
+    margin-bottom: 20px;
+}
+
+#modal-nuevo-ej-entrenamiento {
+    button {
+        margin: 5px 0;
+        margin-right: 5px;
+    }
+
+    .serie .serie-seleccionable {
+        justify-content: left;
+    }
+
+    label {
+        box-sizing: border-box;
+        width: 49% !important;
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+    }
+
+    
+}

@@ -1,0 +1,139 @@
+// ESTILOS PAGINA ANALISIS
+
+.analysis {
+    
+    .filter {
+        .select {
+            & > * {
+                margin: 10px;
+            }
+            
+            input[type="date"] {
+                color: black;
+            }
+        }
+        
+        .selected {
+            .exercise {
+                padding: 7px;
+                display: block;
+                background-color: rgb(112, 112, 112);
+                margin: 5px;
+                border-radius: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+    
+    .results {
+      border-radius: 20px;
+
+
+        #grafico {
+            width: 50vw;
+            margin: auto;
+        }
+        #grafico svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media screen and (max-width: 768px) {
+            #grafico {
+                width: 90vw;
+                
+            }
+        }
+
+        .registros-analisis {
+          display: block;
+          padding: 10px;
+          margin-top: 70px;
+          margin-right: 20px;
+
+          span {
+            border-bottom: 1px solid white;
+            display: block;
+            font-size: 20px;
+          }
+
+          .serie {
+            font-size: 15px;
+            padding: 15px 30px;
+          }
+        }
+    }
+    
+    .registros {
+        margin-top: 40px;
+    }
+    .registros .exercise {
+        padding: 7px;
+        margin: 5px;
+        border-radius: 10px;
+        display: block;
+        background-color: #707070;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .select.inputs {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        @media screen and (max-width: 800px) {
+            flex-direction: column;
+            align-items: normal;
+        }
+    }
+    
+    
+    .analysis .filter .select > * {
+        margin: 10px;
+      }
+      .analysis .filter .select input[type=date] {
+        color: black;
+      }
+      .analysis .filter .selected .exercise {
+        padding: 7px;
+        display: block;
+        background-color: rgb(112, 112, 112);
+        margin: 5px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .analysis .results #grafico {
+        width: 60vw;
+        margin: auto;
+      }
+      .analysis .results #grafico svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      @media screen and (max-width: 800px) {
+        .analysis .results #grafico {
+          width: 90vw;
+        }
+      }
+      .analysis .registros {
+        margin-top: 40px;
+      }
+      .analysis .registros .exercise {
+        padding: 7px;
+        margin: 5px;
+        border-radius: 10px;
+        display: block;
+        background-color: #707070;
+        display: flex;
+        justify-content: space-between;
+      }
+      
+    
+}

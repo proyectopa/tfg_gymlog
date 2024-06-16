@@ -1,0 +1,129 @@
+<%- include('./partials/header') %>
+
+<%- include('./partials/nav') %>
+
+<div class="analysis">
+    <div class="filter">
+        <!-- // apartado búsqueda y filtro -->
+        <div class="select inputs">
+            <div>
+                <button id="btn-nuevo-ejercicio" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-ejercicios">Seleccionar ejercicio</button>
+            </div>
+            <label>
+                Fecha inicio
+                <input type="date" class="date1" id="fecha-ini-analisis">
+            </label>
+            <label>
+                Fecha fin
+                <input type="date" class="date2" id="fecha-fin-analisis">
+            </label>
+            <div>
+                <button class="btn btn-success" id="btn-buscar-graficos" disabled>Buscar</button>
+            </div>
+        </div>
+        <div class="selected" id="contenedor-ejercicio-seleccionado">
+        </div>
+    </div>
+    <hr class="hr">
+    <div class="results">
+        <!-- apartado resultados grafica -->
+        <div class="graphs line">
+            <div id="grafico">
+                <svg></svg>
+            </div>
+        </div>
+        <div class="registros-analisis">
+            
+        </div>
+    </div>
+    
+   
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal ejercicio-serie -->
+<div class="modal fade" id="modal-ejercicios" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Seleccionar ejercicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                 
+                <div class="input">
+                    <label>
+                        <input type="text" placeholder="Buscar ejercicio..." name="" id="ejercicioInput">
+                    </label>
+                    <hr class="hr">
+                    
+                    <div class="resultados">
+                    </div>
+                </div>
+                
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Toast - ventana errores -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toastTitle">Error</strong>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastBody">
+            Error
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Error</h5>
+                <button type="button" class="btn-close" aria-label="Close" id="closeModalBtn"></button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body" id="modalBody">
+                Modal body text goes here.
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeModalFooterBtn">Close</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<!-- importo el js y la librería de graficos -->
+<script src="libs\d3\cal-heatmap\d3.v7.min.js"></script>
+<script src="scripts/analysis.js"></script>
+
+
+<%- include('./partials/footer') %>

@@ -1,0 +1,8 @@
+// importo bootstrap y el tema darkly
+
+// de node_modules/...
+@import '../../../node_modules/bootswatch/dist/darkly/_variables.scss';
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+@import '../../../node_modules/bootswatch/dist/darkly/_bootswatch.scss';

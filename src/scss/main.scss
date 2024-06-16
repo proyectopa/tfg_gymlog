@@ -1,0 +1,102 @@
+// ARCHIVO SCSS PRINCIPAL - agrupa el resto de ficheros
+// npx sass src/scss/main.scss public/css/main.css
+
+// variables
+@import 'variables';
+
+// general
+@import 'general';
+
+// home
+@import 'home';
+
+// cabecera (nav)
+@import 'nav';
+
+// footer
+@import 'footer';
+
+// analysis
+@import 'analysis';
+
+// calendario
+@import 'calendar';
+
+// ejercicios
+@import 'exercises';
+
+// login / registrar
+@import 'login-signup';
+
+
+
+
+// estilos generales comunes a todas las paginas
+
+
+
+// estilo modales con input y entradas
+.set-modal {
+
+    .input {
+        input {
+            padding: 5px;
+            border-radius: 10px;
+            margin: 5px;
+            color: black;
+        }
+    }
+
+    .serie, .serie.etiqueta-filtro {
+        padding: 10px;
+        background-color: rgb(102, 102, 102);
+        border-radius: 10px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .resultados {
+        .etiquetas-resultados .ejercicio {
+            padding: 10px;
+            background-color: rgb(102, 102, 102);
+            border-radius: 10px;
+            margin: 5px;
+        }
+    }
+
+    .modal-body  {
+        
+        .nombre {
+            width: 100%;
+        }
+        .ejercicio {
+            background-color: transparent;
+        }
+    }
+
+    .contenedor-gris {
+        padding: 10px;
+        background-color: rgb(102, 102, 102) !important;
+        border-radius: 10px;
+        margin: 5px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:not(:has(button)) {
+            cursor: pointer !important;
+        }
+
+    }
+
+    
+}
+
+
+.modal-margin {
+    margin-bottom: 15px;
+}
+

@@ -1,0 +1,283 @@
+<%- include('./partials/header') %>
+
+<script src='./scripts/exercises.js' defer></script>
+
+<%- include('./partials/nav') %>
+
+
+
+
+
+<div class="botones-pagina-ejercicio">
+    <div class="exercise">
+        <button class="btn btn-primary btn-modal-crear-ejercicio" id="modal-ejercicios" data-bs-toggle="modal" data-bs-target="#modal-create-exercise">Crear ejercicio</button>
+        <!-- <button class="btn btn-primary">Nuevo ejercicio</button> -->
+    </div>
+    <div class="unit">
+        <button class="btn btn-primary btn-modal-unidades" id="modal-unidades" data-bs-toggle="modal" data-bs-target="#modal-unidad" >Unidades</button>
+        <!-- <button class="btn btn-primary">Unidades</button> -->
+    </div>
+    <div class="tag">
+        <button class="btn btn-primary btn-modal-etiquetas" id="modal-etiquetas" data-bs-toggle="modal" data-bs-target="#modal-etiqueta">Etiquetas</button>
+        <!-- <button class="btn btn-primary">Etiquetas</button> -->
+    </div>
+</div>
+<hr class="hr">
+
+<div class="exercises-container">
+    <div class="search">
+        <div class="name-input">
+            <label for="exercise-search">Buscar Ejercicios:</label>
+            <input type="text" id="exercise-search" placeholder="Buscar por nombre...">
+        </div>
+        <div class="tags-input">
+            <!-- <button class="btn btn-primary">Añadir etiqueta</button> -->
+            <!-- <button data-bs-toggle="modal" data-bs-target="#modal-add-tag-filter" class="btn btn-primary" id="btn-nueva-etiqueta-filtro" >Añadir etiqueta de filtro</button> -->
+            
+            <div class="results" id="etiquetas-seleccionadas-filtro-ejercicio">
+            </div>
+        </div>
+        <hr class="hr">
+        
+    </div>
+    <div class="results" id="exercise-search-result">
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+<!-- Modal añadir etiquetas a filtro -->
+<div class="modal fade" id="modal-add-tag-filter" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Añadir etiquetas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- <p data-bs-toggle="modal" data-bs-target="#modal-ejercicio-serie">Prueba</p> -->
+                
+                <div class="search-tag">
+                    <div class="input">
+                        <label>
+                            <input type="" name="" placeholder="Buscar etiqueta..." id="input-busqueda-etiqueta-filtro">
+                        </label>
+                        
+                    </div>
+                    <div class="results" id="resultado-busqueda-etiquetas-filtro">
+                        <div class="serie tag result">Press</div>
+                        <div class="serie tag result">Press banca</div>
+                        <div class="serie tag result">Press inclinado</div>
+                        <div class="serie tag result">Press gamba</div>
+                    </div>
+                    
+                </div>
+                
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <!-- <button type="button" class="btn btn-primary">Guardar cambios</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- modal etiquetas (crear, eliminar, ver) -->
+<div class="modal fade" id="modal-etiqueta" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Etiquetas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="input">
+                    <div class="modal-margin">
+                        <label for="nombreEtiqueta">Nombre</label>
+                        <input type="text" name="" placeholder="resistencia..." id="nombreEtiqueta">
+                    </div>
+                    <div class="modal-margin">
+                        <label for="colorEtiqueta">Color</label>
+                        <input type="color" name="" id="colorEtiqueta">
+                    </div>
+                    <button class="btn btn-primary btn-crear-etiqueta modal-margin" id="btn-crear-etiqueta">Crear etiqueta</button>
+                </div>
+                <hr class="hr">
+                <div class="results etiquetas-resultados">
+                    
+                </div>
+                
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- modal crear/editar/eliminar unidades -->
+
+<div class="modal fade" id="modal-unidad" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Unidades</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="input">
+                    <div>
+                        <label for="ud1">Unidad 1</label>
+                        <input type="text" placeholder="repeticiones" name="" id="ud1">
+                        <br>
+                        <label for="ud2">Unidad 2</label>
+                        <input type="text" placeholder="kg" name="" id="ud2">
+                    </div>
+                    <br>
+                    <button class="btn btn-primary btn-crear-unidad" id="btn-crear-unidad">Crear unidad</button>
+                    <hr class="hr">
+                </div>
+                <div class="results" id="unidades-resultados">
+                    <div class="serie">
+                        <span>unidad1 - unidad1</span>
+                        <button class="btn btn-danger">x</button>
+                    </div>
+                    <div class="serie">
+                        <span>unidad1 - unidad1</span>
+                        <button class="btn btn-danger">x</button>
+                    </div>
+                    <div class="serie">
+                        <span>unidad1 - unidad1</span>
+                        <button class="btn btn-danger">x</button>
+                    </div>
+                </div>
+                
+                
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- modal crear ejercicio  -->
+
+<div class="modal fade" id="modal-create-exercise" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Crear ejercicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                
+                <div class="input">
+                    <div class="modal-margin">
+                        <label for="exercise-name-input">Nombre</label>
+                        <input type="text" placeholder="Sentadillas..." id="exercise-name-input">
+                    </div>
+                    <div class="modal-margin">
+                        <label for="unit-options-create-exercise">Unidades</label>
+                        <select name="" id="unit-options-create-exercise">
+                        </select>
+                    </div>
+                    
+                    
+                    <div >
+                        <span class="modal-margin">Etiquetas seleccionadas:</span>
+                        <div class="etiquetas-seleccionadas-ejercicio resultados">
+                            
+                        </div>
+                        <hr class="hr">
+                        
+                        <span class="modal-margin">Tus etiquetas:</span>
+                        <div class="resultados agregar-etiqueta-ejercicio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-enviar" id="btn-crear-ejercicio">Crear ejercicio</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<!-- toast mensajes error -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toastTitle">Error</strong>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastBody">
+            Error
+        </div>
+    </div>
+</div>    
+    
+
+
+
+<!--  -->
+
+
+
+<!-- Modal confirmar borrar ejercicio-->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que quieres borrar este ejercicio y todos sus series asociadas?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmDelete">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+    
+    <%- include('./partials/footer') %>
+    

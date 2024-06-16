@@ -1,0 +1,122 @@
+<%- include('./partials/header') %>
+
+<%- include('./partials/nav') %>
+
+
+<div class="home">
+    
+    
+    <section class="principal">
+        <div class="principal-centrar">
+            <div class="principal-superior">
+                <div class="principal-titulo">
+                    <div class="titulo-borde-1"></div>
+                    <h1 class="titulo">
+                        GymLog
+                    </h1>
+                    <div class="titulo-borde-2"></div>
+                </div>
+                <p class="subtitulo">Registra tus entrenamientos <br>en el gimnasio y sigue tu <br> progreso. ¡Empieza ya!
+                </p>
+                <a class="btn-titulo" href="/signup">Registrate</a>
+            </div>
+            <div class="ver-mas">
+                <a href="#caracteristicas">Ver más <br><span class="ver-mas-flecha">&darr;</span></a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="links-apartados">
+        <a class="nombre-apartado" href="#caracteristicas">Características</a>
+        <a class="nombre-apartado" href="#funcionamiento">Cómo funciona</a>
+        <a class="nombre-apartado" href="#empezar">Empezar</a>
+    </section>
+    
+    <section id="two" class="apartado apartado1">
+        <h3 class="titulo" id="caracteristicas">Caracteristicas</h3>
+        <div class="caracteristicas">
+            <div class="apartado-c caracteristicas-1">
+                <div class="titulo-caracteristicas">Fácil registro</div>
+                <p class="texto-caracteristicas">Anota tus ejercicios y series rápidamente durante tu entrenamiento. Nuestro sistema intuitivo te permite agregar nuevas entradas en cuestión de segundos, facilitando el seguimiento preciso de cada actividad. Ya no tendrás que preocuparte por perder el hilo de tus entrenamientos; todo está organizado y accesible al instante.</p>
+            </div>
+            <div class="apartado-c caracteristicas-2">
+                <div class="titulo-caracteristicas">Calendario de entrenamientos</div>
+                <p class="texto-caracteristicas">Visualiza entrenamientos anteriores de manera sencilla con el calendario interactivo. Nuestro calendario te muestra de un vistazo tus sesiones pasadas, permitiéndote revisar y analizar tu rutina de ejercicios con facilidad. Puedes navegar por fechas específicas y ver detalles completos de cada entrenamiento.</p>
+            </div>
+            <div class="apartado-c caracteristicas-3">
+                <div class="titulo-caracteristicas">Gráficos</div>
+                <p class="texto-caracteristicas">Observa tu evolución en distintos ejercicios de manera visual con gráficos. Los gráficos te proporcionan una representación clara y detallada de tu progreso, ayudándote a identificar tendencias y áreas de mejora. Puedes ver tus avances en fuerza, resistencia y otros parámetros clave de manera visual.</p>
+            </div>
+            <div class="apartado-c caracteristicas-4">
+                <div class="titulo-caracteristicas">Logra tus objetivos</div>
+                <p class="texto-caracteristicas">Ayuda a alcanzar tus metas de entrenamiento midiendo y siguiendo tu progreso con precisión</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="one" class="apartado apartado2">
+        <h3 class="titulo" id="funcionamiento">Funcionamiento</h3>
+        <div class="funcionamiento">
+            <div class="f-izq">
+                <div class="texto">
+                    <div>
+                        <h4>Paso 1</h4>
+                        <p>Regístrate y configura tu perfil de usuario.</p>
+                    </div>
+                </div>
+                <div class="imagen img-1"></div>
+            </div>
+            <div class="f-dcha">
+                <div class="texto">
+                    <div>
+                        <h4>Paso 2</h4>
+                        <p>Crea unidades y etiquetas que después podrás asignar a los ejercicios que crees.</p>
+                    </div>
+                </div>
+                <div class="imagen  img-2"></div>
+            </div>
+            <div class="f-izq">
+                <div class="texto">
+                    <div>
+                        <h4>Paso 3</h4>
+                        <p>Configura tus ejercicios. Puedes asignarles un nombre, las unidades de los datos que guardará y varias etiquetas para organizarlos.</p>
+                    </div>
+                </div>
+                <div class="imagen img-3"></div>
+            </div>
+            <div class="f-dcha">
+                <div class="texto">
+                    <div>
+                        <h4>Paso 4</h4>
+                        <p>Accede a tus entrenamientos desde el calendario. Puedes crear un entrenamiento añadiendole los ejercicios que tengas creados.</p>
+                    </div>
+                </div>
+                <div class="imagen img-4"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="three" class="apartado apartado3">
+        <h3 class="titulo" id="empezar">Empezar</h3>
+        <div class="empezar">
+            <p>¡Empieza ya! Regístrate gratis y <br>lleva tus entrenamientos al siguiente nivel.</p>
+            <a href="/signup" class="btn-empezar">Registrate</a>
+        </div>
+    </section>
+    
+    <footer id="footer" class="footer">
+        <div class="iconos">
+            <span class="icono" id="linkCopiarEmail">&#9993; Admin: <span><%= adminEmail %></span></span>
+        </div>
+        <div class="copy">
+            © 2024 Pablo | pablogcl38@gmail.com
+        </div>
+    </footer>
+    
+</div>
+</div>
+<script src="scripts/home.js"></script>
+
+
+
+<%- include('./partials/footer') %>

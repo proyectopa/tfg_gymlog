@@ -1,0 +1,65 @@
+// ESTILOS FOOTER
+
+.footer {
+
+    $fondo: #343b43;
+    $azul-claro-1: #455471;
+    $azul-oscuro-1: #111216;
+    $font-blanco-1: #f0eff0;
+    $amarillo-1: #ffff56;
+
+    // principal
+    $font-size-titulo: 50px;
+    $font-size-subtitulo: 10px;
+    $font-size-titulo-apartado: 10px;
+    $font-color-titulo: black;
+    $font-color-subtitulo: black;
+    $fondo-transparente-titulo: rgba(0, 0, 0, 0.932);
+    $font-size-subtitulo: 25px;
+    $font-size-titulo-2: 40px;
+    
+    
+    // apartados
+    // apartados - caracteristicas
+    $caracteristicas-font-size-principal: 10px;
+    $caracteristicas-font-size-texto: 10px;
+    $caracteristicas-font-color: black;
+    
+
+    background-color: $fondo-transparente-titulo;
+    background-color: rgba(15, 13, 14, .97);
+    padding: 50px;
+    
+
+    // estilo apartado principal links
+    .iconos {
+        display: flex;
+        justify-content: center;
+        
+
+        .icono {
+            margin: 20px;
+            padding: 10px;
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        // estilo email
+        #linkCopiarEmail:hover {
+            cursor: copy;
+            box-shadow: 1px 1px 5px white;
+        } 
+        #linkCopiarEmail {
+            cursor: copy;
+            border-radius: 100px;
+            transition: box-shadow .2s;
+        } 
+        
+    }
+    
+    .copy {
+        text-align: center;
+    }
+}

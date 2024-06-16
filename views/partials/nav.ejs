@@ -1,0 +1,26 @@
+</head>
+<body>
+
+    <nav class="navegacion">
+        <h1 class="link-logo"><a href="/"><img src="/images/logo.svg" alt="" srcset="">gymlog</a></h1>
+        <ul class="links">
+
+            <!-- verifico si se ha pasado email o id, el usuario esta iniciado sesión y tiene acceso -->
+            <!-- a todas sus páginas y a cerrar sesión-->
+            <% if(email) { %>
+                <li class="calendar"><a href="/calendar" >Calendario</a></li>
+                <li class="exercises"><a href="/exercises" >Ejercicios</a></li>
+                <li class="analysis"><a href="/analysis" >Análisis</a></li>
+                <li class="analysis"><a href="/account" >Cuenta</a></li>
+                <li class="logout"><a href="/logout" >Cerrar sesión</a></li>
+            <% } else { %>
+                <!-- si no se ha pasado el usuario aun no ha iniciado sesión. Se le da opción de iniciar-sesion o registrarse -->
+                <li><a href="/login">Iniciar sesión</a></li>
+                <li class="signup"><a href="/signup" >Regístrate</a></li>
+            <% } %>
+            
+        </ul>
+        <!-- boton activar/desactivar menu en pantallas moviles -->
+        <button class="boton-nav">&#9776;</button>
+    </nav>
+    <main class="principal">

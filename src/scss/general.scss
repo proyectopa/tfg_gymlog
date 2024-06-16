@@ -1,0 +1,78 @@
+
+@font-face {
+    font-family: 'super';
+    src: url('../fonts/superRetro/Super\ Retro\ Italic\ M54.ttf');
+}
+
+@font-face {
+    font-family: 'libertine';
+    src: url('../fonts/linLibertine/LinLibertine_R.ttf');
+}
+
+@font-face {
+    font-family: 'franchise';
+    src: url('../fonts/franchise/FranchiseFilled.ttf');
+}
+
+@font-face {
+    font-family: 'choco';
+    src: url('../fonts/choco/choco.otf');
+}
+
+
+
+// Quito los padding y márgenes por defecto y pongo un color por defecto a todas las letras
+* {
+    padding: 0;
+    margin: 0;
+    color: $white;
+    font-family: 'choco';
+}
+
+input, select, option {
+    color: black;
+}
+
+select, option {
+    padding: 5px 10px;
+}
+
+body {
+    background-color: $fondo2;
+    font-family: choco;
+    overflow-x: hidden;
+    
+    // estilo seleccion
+    &::selection {
+        background-color: $morado;
+        color: black;
+    }
+}
+
+// CUERPO
+
+// Contenedor principal. Pongo ancho máximo, lo centro y pongo padding
+.principal:not(:has(.home)) {
+    max-width: 100%;
+    margin: auto;
+    margin-top: 80px;
+    // max-width: 1500px;
+    padding: 20px;
+    
+    // estilo titulo, subtítulo y texto
+    h1 {
+        font-family: choco;
+        font-size: 50px;
+    }
+    
+    h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+}
+
+

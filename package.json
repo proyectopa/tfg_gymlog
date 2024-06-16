@@ -1,0 +1,32 @@
+{
+  "name": "proeycto2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startDev": "nodemon server.js",
+    "start": "node server.js",
+    "compile-scss": "sass src/scss/main.scss public/css/main.css",
+    "compile-scss-server": "sass --watch src/scss/main.scss public/css/main.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "bootswatch": "^5.3.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.7",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "sass": "^1.77.5"
+  }
+}

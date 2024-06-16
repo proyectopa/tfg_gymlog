@@ -1,0 +1,174 @@
+// ESTILO BARRA NAVEGACION
+
+.navegacion {
+    
+
+    // estilo de la barra
+    z-index: 2;
+    background-color: $nav;
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    padding: 0 15px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color .3s;
+    align-items: center;
+    height: 70px;
+    
+    // animación a la barra al pasar el ratón. Cambia de color
+    &:hover {
+        background-color: $navHover;
+    }
+
+    * {
+        color: white;
+    }
+
+    .link-logo {
+        font-size: 22px;
+        img {
+            margin-right: 10px;
+            width: auto;
+            max-height: 25px;
+        }
+        transition: scale .1s;
+    }
+
+    .link-logo:hover {
+        scale: 1.05;
+    }
+
+    // // estilo logo
+    // .link-logo img {
+    //     width: auto;
+    //     max-height: 25px;
+    //     transition: scale .1s;
+    //     &:hover {
+    //         scale: 1.05;
+    //     }
+    // }
+    
+    // alineo los links (elementos li en la lista) con flex y les pongo padding
+    // quito el estilo de la lista
+    .links {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        
+        // doy padding a los links para poder presionarlos mejor
+        // les doy margin, font-weight y size
+        li a {
+            text-decoration: none;
+            padding: 10px;
+            margin: 0px 10px;
+            font-weight: 900;
+            font-size: 17px;
+        }
+
+        li {
+            &.signup > a, &.logout > a {
+                background-color: $links;
+                border-radius: 30px;
+                color: rgb(31, 31, 31);
+                padding: 7px;
+            }
+
+            &.signup > a:hover, &.logout > a:hover {
+                background-color: $links-hover;
+            }
+        }
+        
+        // NAVEGACIÓN - transiciones
+        // doy transiciones al logo,
+        // a los li que no sean visibles (en menu movil queda rara la animacion),
+        // al botón nav
+        &:not(.visible) li,
+        .link-logo,
+        .boton-nav {
+            transition: scale .1s ease-in-out;
+        }
+        
+        // aplico las transiciones. Scale para agrandar y text-shadow para "iluminar" los textos
+        &:not(.visible) li:not(.signup, .logout):hover,
+        .boton-nav:hover {
+            scale: 1.05;
+            border-radius: 50%;
+            text-shadow: 1px 1px 20px rgba(255, 255, 255, 0.625);
+        }
+        
+        li:not(.signup, .logout):hover {
+            text-shadow: 0px 0px 10px $morado;
+        }
+        
+        .link-logo:hover {
+            scale: 1.1;
+            box-shadow: 2px 3px 7px $morado;
+            border-radius: 10%;
+        }
+    }
+    
+    // por defecto el botón de navegación se oculta (se muestra en pantallas pequeñas)
+    .boton-nav {
+        display: none;
+    }
+    
+    // pongo una animación distinta al quitar el ratón a cuando lo pongo usando :not()
+    // le doy delay para que tarde en empezar la transición y un tiempo distinto
+    &:not(:hover) {
+        transition: 1s;
+        transition-delay: 1s;
+    }
+}
+
+// estilo en pantallas móviles
+@media screen and (max-width: 768px) {
+    // muestro el botón de navegación con block le doy el estilo
+    .navegacion {
+        .boton-nav {
+            display: block;
+            font-weight: 600;
+            font-size: 40px;
+            background-color: transparent;
+            border: none;
+            
+            // pongo un puntero para saber que se puede pulsar el botón
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        
+        // oculto los links por defecto
+        .links {
+            display: none;
+            
+            // si tienen la clase "visible" los muestro con display "block"
+            // les doy estilo (doy dimensiones y pongo zindex:-1 para que no tape el propio nav)
+            &.visible {
+                display: block;
+                background-color: rgba(15, 13, 14, .97);
+                position: fixed;
+                top: 0px;
+                left: 0;
+                width: 100%;
+                padding-top: 100px;
+                z-index: -1;
+                
+                // estilo de los links
+                li {
+                    margin-bottom: 40px;
+                    
+                    a {
+                        display: block;
+                        padding: 20px 30px;
+                        border-bottom: 1px solid $white;
+                    }
+                }
+            }
+        }
+    }
+}

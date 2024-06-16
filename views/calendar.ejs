@@ -1,0 +1,95 @@
+<%- include('./partials/header') %>
+
+<script src='./libs/fullCalendar/index.global.js' defer></script>
+<script src='./scripts/calendar.js' defer></script>
+
+<%- include('./partials/nav') %>
+
+<!-- apartado principal -->
+<div class="calendario-entrenamiento">
+    <!-- apartado calendario -->
+    <div class="apartado-calendario">
+        <div class="titulo-calendario">
+            
+        </div>
+        <div class="calendario">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <!-- apartado calendario -->
+    <div class="apartado-entrenamiento" id="apartado-entrenamiento">
+        
+    </div>
+    
+</div>
+
+
+<!-- modal editar series y enviar al servidor -->
+
+<div class="modal fade" id="modal-ejercicio-serie" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Editar series</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary enviar-ejercicio">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal Añadir ejercicio al entrenamiento -->
+<div class="modal fade" id="modal-ejercicio" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content set-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="miModalLabel">Añadir ejercicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="input">
+                    <label>
+                        <input type="text" name="" placeholder="Busca un ejercicio..." id="ejercicioInput">
+                    </label>
+                    <hr class="hr">
+                    
+                    <div class="resultados">
+                    </div>
+                </div>
+
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- toast mensajes error -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" id="toastTitle">Error</strong>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastBody">
+            Error
+        </div>
+    </div>
+</div>    
+
+
+<%- include('./partials/footer') %>
