@@ -33,7 +33,7 @@ services:
       - mysql  # Asegura que MySQL esté levantado antes de iniciar Node.js
 
   nginx:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: 'jc21/nginx-proxy-manager:github-pr-3121'
     restart: unless-stopped
     ports:
       - '80:80'
