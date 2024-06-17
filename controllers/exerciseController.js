@@ -1,7 +1,7 @@
 const connection = require('./../database/connection')
 
 
-// obtener todos los ejercicios (y etiquetas?)
+// obtener todos los ejercicios 
 module.exports.getExercises = async (req, res) => {
     const tagIds = req.query.tags ? req.query.tags.split(',') : [];
 
@@ -52,7 +52,6 @@ module.exports.getExercises = async (req, res) => {
 
         res.status(200).json(exercisesWithTags);
     } catch (error) {
-        console.error('Error al obtener ejercicios:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
@@ -97,7 +96,6 @@ module.exports.postExercise = async (req, res) => {
         res.status(200).json({ message: 'Ejercicio actualizado exitosamente' });
         
     } catch (error) {
-        console.error('Error al crear o actualizar ejercicio:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
@@ -171,7 +169,6 @@ module.exports.units_post = async (req, res) => {
         res.status(200).json({ message: 'Unidad actualizada exitosamente' });
         return
     } catch (err) {
-        // console.error('Error al crear o actualizar la unidad:', err);
         res.status(500).json({ error: 'Error al crear o actualizar la unidad' + err });
     }
 }
@@ -199,7 +196,6 @@ module.exports.units_get = async (req, res) => {
         
         res.status(200).json(unidades);
     } catch (err) {
-        console.error('Error al obtener unidades:', err);
         res.status(500).json({ error: 'Error al obtener las unidades' });
     }
 }
@@ -245,7 +241,6 @@ module.exports.getTags = async (req, res) => {
         // Enviar las etiquetas como respuesta
         res.status(200).json(tags);
     } catch (error) {
-        console.error('Error al obtener las etiquetas:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
@@ -275,7 +270,6 @@ module.exports.postTag = async (req, res) => {
         await connection.query('INSERT INTO etiqueta (nombre, color, idUsuario) VALUES (?, ?, ?)', [nombre, color, res.locals.userId]);
         res.status(201).json({ message: 'Etiqueta creada exitosamente' });
     } catch (error) {
-        console.error('Error al crear o actualizar la etiqueta:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
@@ -306,7 +300,6 @@ module.exports.deleteTag = async (req, res) => {
         await connection.query('DELETE FROM etiqueta WHERE id = ?', [id]);
         res.status(200).json({ message: 'Etiqueta eliminada exitosamente' });
     } catch (error) {
-        console.error('Error al eliminar la etiqueta:', error);
         if(error.message == 'Error, no puedes eliminar etiquetas asociadas a ejercicios') {
             res.status(400).json({ error: error.message });
             return

@@ -1,3 +1,4 @@
+
 // datos entrenamiento actual
 let entrenamientoActual = {};
 let copiaEjercicio = null;
@@ -24,7 +25,6 @@ async function cambiarEntrenamiento(fecha) {
             return null;
         }
     } catch (error) {
-        console.error('Error al obtener el entrenamiento:', error);
         return null;
     }
 }
@@ -49,11 +49,9 @@ async function guardarEntrenamiento(ejercicio) {
         if (response.ok) {
             // Recargar el entrenamiento después de guardar
             cambiarEntrenamiento(new Date(entrenamientoActual.fecha));
-        } else {
-            console.error('Error al guardar el entrenamiento:', response.statusText);
-        }
+        } 
     } catch (error) {
-        console.error('Error al guardar el entrenamiento:', error);
+        return
     }
 }
 
@@ -232,7 +230,7 @@ function pintarEntrenamiento() {
         botonGuardar.addEventListener('click', () => {
             
               
-            let roundedValue = Math.round(value * 100) / 100;
+            // let roundedValue = Math.round(value * 100) / 100;
           
 
             let nuevaSerie = {
@@ -339,10 +337,9 @@ async function cambiarMes(fecha) {
             calendar.removeAllEvents(); // Eliminar todos los eventos existentes
             calendar.addEventSource(eventos); // Agregar los nuevos eventos
         } else {
-            console.error('Formato de datos incorrecto', data);
         }
     } catch (error) {
-        console.error('Error al cargar eventos:', error);
+        
     }
 }
 
@@ -376,10 +373,11 @@ var calendar = new FullCalendar.Calendar(calendarEl, {
     contentHeight: 'auto',
     themeSystem: 'bootstrap5',
     locale: 'es', 
+    firstDay: 1,
     headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,dayGridYear',
+        right: 'dayGridMonth',
     },
     buttonText: {
         today: "Hoy",
@@ -443,7 +441,6 @@ const buscarEjercicios = async (query) => {
         return [];
     }
 };
-
 
 // Función para mostrar los resultados de la búsqueda
 const mostrarResultados = (resultados) => {
@@ -657,7 +654,6 @@ async function postSeriesEjercicios() {
     // Formatear la fecha en formato 'YYYY-MM-DD'
     const fechaFormateadaMySQL = `${año}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
     
-    console.log(ejercicio.series[0])
 
     try {
         const response = await fetch('/saveTraining', {
@@ -694,6 +690,7 @@ async function postSeriesEjercicios() {
 
 let myToast;
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const myToastEl = document.getElementById('myToast');
     myToast = new bootstrap.Toast(myToastEl, {
@@ -702,29 +699,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     
-    
     myToastEl.querySelector('.btn-close').addEventListener('click', () => {
         myToast.hide();
     });
 });
-
 
 function showToast(title, message) {
     document.getElementById('toastTitle').innerText = title;
     document.getElementById('toastBody').innerText = message;
     myToast.show();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

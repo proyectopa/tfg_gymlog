@@ -48,6 +48,16 @@
     border-radius: 10px !important;
 }
 
+#calendar h2 {
+    @media screen and (max-width: 1280px) {
+        font-size: 25px;
+    }
+    @media screen and (max-width: 1166) {
+        font-size: 20px;
+    }
+    text-align: center;
+}
+
 .calendario-entrenamiento > * {
     // border: 1px solid rgb(35, 25, 83) !important;
     box-shadow: 5px 5px 0px rgba(227, 233, 255, 0.262);

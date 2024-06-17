@@ -56,7 +56,6 @@ confirmDeleteButton.addEventListener('click', async function () {
             // Ocultar el modal
             confirmModal.hide();
         } catch (error) {
-            console.error('Error al eliminar el ejercicio:', error);
             // Mostrar un mensaje de error al usuario
         }
     }
@@ -167,13 +166,12 @@ async function pintarEtiquetas() {
             const idEtiqueta = etiquetaDiv.getAttribute('data-id-etiqueta');
             const button = etiquetaDiv.querySelector('button');
             button.addEventListener('click', async () => {
-                if(await eliminarEtiqueta(idEtiqueta) == 1) {
-                    etiquetaDiv.remove();
-                }
+                    if(await eliminarEtiqueta(idEtiqueta) == 1) {
+                        etiquetaDiv.remove();
+                    } 
             });
         });
     } catch (error) {
-        console.error('Error al obtener etiquetas:', error);
         resultsDiv.innerHTML = '<div>Error al cargar etiquetas</div>';
     }
 }
@@ -188,13 +186,15 @@ async function eliminarEtiqueta(idEtiqueta) {
             }
         });
         
+        
         if (!response.ok) {
-            let response1 = await response.json()
-            if(response1.error == "Error, no puedes eliminar etiquetas asociadas a ejercicios") {
-                showToast('Error', 'Error, no puedes eliminar etiquetas asociadas a ejercicios')
-                return 0
+            const response1 = await response.json();
+            if (response1.error === "Error, no puedes eliminar etiquetas asociadas a ejercicios") {
+                showToast('Error', 'Error, no puedes eliminar etiquetas asociadas a ejercicios');
+            } else {
+                showToast('Error', 'Error al eliminar la etiqueta');
             }
-            return 0
+            return 0;
         }
         
         const data = await response.json();
@@ -204,10 +204,10 @@ async function eliminarEtiqueta(idEtiqueta) {
         if (index !== -1) {
             filtrosBusquedaEjercicio.etiquetas.splice(index, 1);
         }
-        
-        return 1
+        return 1;
     } catch (error) {
-        
+        showToast('Error', 'Error al eliminar la etiqueta');
+        return 0;
     }
 }
 
@@ -278,7 +278,6 @@ async function pintarUnidades() {
         
         
     } catch (error) {
-        console.error('Error al obtener unidades:', error);
         resultsDiv.innerHTML = '<div>Error al cargar unidades</div>';
     }
 }
@@ -336,7 +335,6 @@ document.getElementById('btn-crear-unidad').addEventListener('click', async () =
         
         if (!response.ok) {
             const errorData = await response.json();
-            console.error('Error:', errorData.error);
             if(errorData.error == 'Error al crear o actualizar la unidadError: Ya existe') {
                 showToast('Error', errorData.error)
                 return;
@@ -463,13 +461,11 @@ btnCrearEjercicio.addEventListener('click', async function() {
         // Obtener nombre del ejercicio
         document.querySelector('#exercise-name-input').value = ''
         debouncedSearch()
-
+        
         let modalEjer = document.querySelector('#modal-create-exercise')
-        console.log(modalEjer)
         const modal = bootstrap.Modal.getInstance(modalEjer); // Obtiene la instancia del modal
         modal.hide();
     } catch (error) {
-        console.error('Error al crear el ejercicio:', error);
     }
 })
 
@@ -504,7 +500,6 @@ async function obtenerUnidades() {
         
         divSelectUnidad.innerHTML = htmlSelect;
     } catch (error) {
-        console.error('Error al obtener unidades:', error);
         divSelectUnidad.innerHTML = '<option>Error al cargar unidades</option>';
     }
     
@@ -556,10 +551,10 @@ async function obtenerEtiquetas() {
                 const alreadySelected = [...divEtiquetasSeleccionadas.children].some(child => 
                     child.getAttribute('data-id-tag') === tagId
                 );
-
-
+                
+                
                 if (!alreadySelected) {
-
+                    
                     // Crear nuevo elemento de etiqueta seleccionada
                     const newTagElement = document.createElement('div');
                     newTagElement.classList.add('ejercicio');
@@ -575,13 +570,12 @@ async function obtenerEtiquetas() {
                     // Añadir la nueva etiqueta al contenedor de etiquetas seleccionadas
                     divEtiquetasSeleccionadas.appendChild(newTagElement);
                     
-
+                    
                 }
             });
         });
         
     } catch (error) {
-        console.error('Error al obtener etiquetas:', error);
         divAgregarEtiqueta.innerHTML = '<div>Error al cargar etiquetas</div>';
     }
 }
@@ -608,15 +602,12 @@ const debounce = (func, delay) => {
 
 
 
-    
+
 function debouncedSearch() {
     debounce(async () => {
-        console.log(4);
         filtrosBusquedaEjercicio.query = ejercicioInput.value;
         const resultados = await buscarEjercicios(ejercicioInput.value);
         mostrarResultados(resultados);
-        console.log(7777777777)
-        console.log(resultados)
     }, 0)();
 }
 
@@ -651,7 +642,6 @@ const buscarEjercicios = async () => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error al buscar ejercicios:', error);
         return [];
     }
 };
@@ -660,7 +650,7 @@ const mostrarResultados = (resultados) => {
     divResultadoEjercicios.innerHTML = '';
     
     if (resultados.length === 0 && filtrosBusquedaEjercicio.query != '') {
-        divResultadoEjercicios.innerHTML = '<p>No hay resultados para el nombre y las etiquetas introducidas</p>';
+        divResultadoEjercicios.innerHTML = '<p>No hay resultados para el nombre de ejercicio introducido</p>';
         return
     } 
     
@@ -699,84 +689,83 @@ inputBusqueda.addEventListener('input', filtrarEtiquetas);
 
 // Función para obtener y mostrar las etiquetas desde el servidor con filtrado
 async function obtenerYMostrarEtiquetas() {
-  resultsDiv.innerHTML = ''; // Limpiar el contenido previo
-  
-  try {
-    const response = await fetch('/tag', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    resultsDiv.innerHTML = ''; // Limpiar el contenido previo
     
-    if (!response.ok) {
-      showToast('Error', 'Error al obtener las etiquetas disponibles desde el servidor');
-      return;
+    try {
+        const response = await fetch('/tag', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            showToast('Error', 'Error al obtener las etiquetas disponibles desde el servidor');
+            return;
+        }
+        
+        etiquetas = await response.json();
+        
+        if (etiquetas.length === 0) {
+            showToast('Aviso', 'Aún no tienes etiquetas creadas, pulsa sobre el botón "etiquetas" para crear una nueva');
+            return;
+        }
+        
+        // Mostrar todas las etiquetas al abrir el modal
+        filtrarEtiquetas();
+        
+    } catch (error) {
+        resultsDiv.innerHTML = '<div>Error al cargar etiquetas</div>';
     }
-    
-    etiquetas = await response.json();
-    
-    if (etiquetas.length === 0) {
-      showToast('Aviso', 'Aún no tienes etiquetas creadas, pulsa sobre el botón "etiquetas" para crear una nueva');
-      return;
-    }
-    
-    // Mostrar todas las etiquetas al abrir el modal
-    filtrarEtiquetas();
-    
-  } catch (error) {
-    console.error('Error al obtener las etiquetas:', error);
-    resultsDiv.innerHTML = '<div>Error al cargar etiquetas</div>';
-  }
 }
 
 // Función para filtrar las etiquetas según el input de búsqueda
 function filtrarEtiquetas() {
-  const filtro = inputBusqueda.value.trim().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
-  resultsDiv.innerHTML = ''; // Limpiar el contenido previo
-  
-  etiquetas.forEach(etiqueta => {
-    const nombreEtiqueta = etiqueta.nombre.toLowerCase(); // Convertir el nombre de la etiqueta a minúsculas
+    const filtro = inputBusqueda.value.trim().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
+    resultsDiv.innerHTML = ''; // Limpiar el contenido previo
     
-    // Verificar si el nombre de la etiqueta contiene el filtro de búsqueda
-    if (nombreEtiqueta.includes(filtro)) {
-      // Crear un nuevo elemento div para la etiqueta
-      const etiquetaDiv = document.createElement('div');
-      etiquetaDiv.classList.add('serie', 'tag', 'result', 'contenedor-gris');
-      etiquetaDiv.textContent = etiqueta.nombre;
-      
-      // Agregar el evento al hacer clic en la etiqueta para alguna acción
-      etiquetaDiv.addEventListener('click', () => {
-        debouncedSearch()
-        // Verificar si la etiqueta ya está seleccionada
-        if (!document.querySelector(`.etiqueta-filtro[data-id-etiqueta="${etiqueta.id}"]`)) {
-          // Crear un nuevo div para la etiqueta seleccionada
-          const etiquetaSeleccionadaDiv = document.createElement('div');
-          etiquetaSeleccionadaDiv.classList.add('serie', 'etiqueta-filtro');
-          etiquetaSeleccionadaDiv.setAttribute('data-id-etiqueta', etiqueta.id);
-          etiquetaSeleccionadaDiv.setAttribute('data-nombre-etiqueta', etiqueta.nombre);
-          
-          // Añadir contenido al div
-          etiquetaSeleccionadaDiv.innerHTML = `
+    etiquetas.forEach(etiqueta => {
+        const nombreEtiqueta = etiqueta.nombre.toLowerCase(); // Convertir el nombre de la etiqueta a minúsculas
+        
+        // Verificar si el nombre de la etiqueta contiene el filtro de búsqueda
+        if (nombreEtiqueta.includes(filtro)) {
+            // Crear un nuevo elemento div para la etiqueta
+            const etiquetaDiv = document.createElement('div');
+            etiquetaDiv.classList.add('serie', 'tag', 'result', 'contenedor-gris');
+            etiquetaDiv.textContent = etiqueta.nombre;
+            
+            // Agregar el evento al hacer clic en la etiqueta para alguna acción
+            etiquetaDiv.addEventListener('click', () => {
+                debouncedSearch()
+                // Verificar si la etiqueta ya está seleccionada
+                if (!document.querySelector(`.etiqueta-filtro[data-id-etiqueta="${etiqueta.id}"]`)) {
+                    // Crear un nuevo div para la etiqueta seleccionada
+                    const etiquetaSeleccionadaDiv = document.createElement('div');
+                    etiquetaSeleccionadaDiv.classList.add('serie', 'etiqueta-filtro');
+                    etiquetaSeleccionadaDiv.setAttribute('data-id-etiqueta', etiqueta.id);
+                    etiquetaSeleccionadaDiv.setAttribute('data-nombre-etiqueta', etiqueta.nombre);
+                    
+                    // Añadir contenido al div
+                    etiquetaSeleccionadaDiv.innerHTML = `
             <span>${etiqueta.nombre}</span>
             <button class="btn btn-danger btn-sm">x</button>
           `;
-          
-          // Añadir el evento para eliminar la etiqueta seleccionada
-          etiquetaSeleccionadaDiv.querySelector('button').addEventListener('click', (e) => {
-            e.stopPropagation();
-            etiquetaSeleccionadaDiv.remove();
-          });
-          
-          // Añadir el div de la etiqueta seleccionada al contenedor
-          etiquetasSeleccionadasDiv.appendChild(etiquetaSeleccionadaDiv);
+                    
+                    // Añadir el evento para eliminar la etiqueta seleccionada
+                    etiquetaSeleccionadaDiv.querySelector('button').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        etiquetaSeleccionadaDiv.remove();
+                    });
+                    
+                    // Añadir el div de la etiqueta seleccionada al contenedor
+                    etiquetasSeleccionadasDiv.appendChild(etiquetaSeleccionadaDiv);
+                }
+            });
+            
+            // Agregar la etiqueta al resultado
+            resultsDiv.appendChild(etiquetaDiv);
         }
-      });
-      
-      // Agregar la etiqueta al resultado
-      resultsDiv.appendChild(etiquetaDiv);
-    }
-  });
+    });
 }
 
 // Llamar a la función para obtener y mostrar las etiquetas desde el servidor

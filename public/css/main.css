@@ -728,6 +728,20 @@ body::selection {
   border-radius: 10px !important;
 }
 
+#calendar h2 {
+  text-align: center;
+}
+@media screen and (max-width: 1280px) {
+  #calendar h2 {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 1166) {
+  #calendar h2 {
+    font-size: 20px;
+  }
+}
+
 .calendario-entrenamiento > * {
   box-shadow: 5px 5px 0px rgba(227, 233, 255, 0.262);
   border: 1px solid #1a1c23;
@@ -992,6 +1006,12 @@ main.principal:has(.calendario-entrenamiento) {
   margin-top: 30px;
   font-size: 20px;
   width: 100%;
+}
+.form-login-signup form button:nth-child(1) {
+  background-color: #00bc8c;
+}
+.form-login-signup form button:nth-child(2) {
+  background-color: #00bc8c;
 }
 .form-login-signup form .error {
   background-color: rgba(166, 166, 166, 0);

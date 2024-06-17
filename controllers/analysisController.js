@@ -9,7 +9,6 @@ module.exports.exerciseGraph_post = async (req, res) => {
         const idEjercicio = req.params.idEjercicio
         const userId = res.locals.userId
         
-        console.log(4)
         // obtengo la fecha y el valor máximo (del valor1 y valor2, depende de cual se haya pedido) por día. Un único registro por fecha
         const sql = `
     SELECT 
@@ -109,14 +108,11 @@ module.exports.exerciseLogs_post = async (req, res) => {
             series: seriesPorFecha[fecha]
         }));
         
-        console.log(resultadosFormateados);
-        console.log(33333);
         
         // Enviar la respuesta con los datos formateados
         res.status(200).json(resultadosFormateados);
     } catch (error) {
         // Manejar errores y enviar una respuesta de error al cliente
-        console.error('Error al obtener los registros de series:', error);
         res.status(500).json({ error: 'Error al obtener los registros de series' });
     }
 };

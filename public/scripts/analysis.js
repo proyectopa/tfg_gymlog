@@ -71,6 +71,7 @@ const mostrarResultados = (resultados) => {
     
     if (resultados.length === 0) {
         resultadosContainer.innerHTML = '<p>No hay resultados</p>';
+        showToast('Avisto', 'Aun no tienes ejercicios creados. Pulsa sobre crear ejercicio en el apartado de ejercicios para crear uno')
     } else {
         let html = '';
         resultados.forEach(ejercicio => {
@@ -183,7 +184,6 @@ const buscarEjercicios = async (query) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error al buscar ejercicios:', error);
         return [];
     }
 };
@@ -206,7 +206,6 @@ async function obtenerDatosRegistrosServidor(idEjercicio, valor, fecha1, fecha2,
             body: JSON.stringify({ valor, fecha1, fecha2 })
         });
         
-        console.log(3)
         if (!response.ok) {
             throw new Error('Error al obtener los datos del servidor');
         }
@@ -217,12 +216,10 @@ async function obtenerDatosRegistrosServidor(idEjercicio, valor, fecha1, fecha2,
             showToast('Error al dibujar el gráfico', 'No se han encontrado resultados para el ejercicio y el rango de fechas seleccionados.');
             return;
         }
-        console.log(datos)
         // renderizarGrafico(datos);
         pintarRegistrosEjercicio(datos)
         
     } catch (error) {
-        console.error('Error en obtenerDatosRegistrosServidor:', error);
         // Manejar el error según sea necesario
     }
 }
@@ -313,7 +310,6 @@ async function obtenerDatosGraficoServidor(idEjercicio, valor, fecha1, fecha2, n
         renderizarGrafico(datos, colores, nombres);
         
     } catch (error) {
-        console.error('Error en obtenerDatosGraficoServidor:', error);
         // Manejar el error según sea necesario
     }
 }
@@ -435,4 +431,29 @@ function renderizarGrafico(datos, colores, nombres) {
        .text(nombres)
        .style('fill', 'white')
        .style('font-size', '16px'); // Cambiar tamaño de la letra de la leyenda
+}
+
+
+
+
+let myToast;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const myToastEl = document.getElementById('myToast');
+    myToast = new bootstrap.Toast(myToastEl, {
+        autohide: true,
+        delay: 5000
+    });
+    
+    
+    myToastEl.querySelector('.btn-close').addEventListener('click', () => {
+        myToast.hide();
+    });
+});
+
+
+function showToast(title, message) {
+    document.getElementById('toastTitle').innerText = title;
+    document.getElementById('toastBody').innerText = message;
+    myToast.show();
 }

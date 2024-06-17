@@ -9,9 +9,6 @@ module.exports.events_get = async (req, res) => {
         const month = req.query.month
         const year = req.query.year
         
-        // consulta usada. Obtiene la fecha, el nombre de la etiqueta y su color
-        // en un rango - el mes del pasados por parametro
-        // obtiene un único registro de la misma etiqueta aunque en la fecha tenemos más series con la misma etiqueta
         const sql = `
         SELECT DATE(SERIE.fecha) AS fecha, ETIQUETA.nombre AS etiqueta, ETIQUETA.color
         FROM SERIE
@@ -214,7 +211,6 @@ module.exports.exercises_get = async (req, res) => {
         res.json(ejercicios)
     } catch (error) {
         // en el caso de error envio un mensaje 
-        console.error(error)
         res.status(500).json({ error: 'Error al buscar ejercicios' })
     
     }

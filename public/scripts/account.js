@@ -1,9 +1,14 @@
 
 
 const formulario = document.querySelector('form')
+const emailError = document.querySelector('.email.error')
+const passwordError = document.querySelector('.password.error')
+
 formulario.addEventListener('submit', function(event) {
     event.preventDefault()
-    console.log(3)
+    emailError.textContent = ''
+    passwordError.textContent = ''
+    
 })
 
 
@@ -23,16 +28,18 @@ btnActualizarContrasena.addEventListener('click', async function() {
         });
         
         if (!response.ok) {
+            let data = await response.json()
+            passwordError.textContent = data.errors.password
             throw new Error('Error al actualizar la contraseña');
         }
         
         // eliminar sesión, redirigir /home
         // window.location.href = '/account';
         
-        console.log('ok')
+        document.querySelector('#input-password').value = ""
         showToast('Éxito', 'Tu contraseña se ha actualizado correctamente')
     } catch (error) {
-        console.error('Error al eliminar la cuenta:', error);
+        showToast('Error', 'Ha habido un error al cambiar tu contraseña')
         // Mostrar un mensaje de error al usuario
     }
 
@@ -41,8 +48,8 @@ btnActualizarContrasena.addEventListener('click', async function() {
 
 
 btnActualizarEmail.addEventListener('click', async function() {
-    let email = document.querySelector('#input-email').value
-    console.log(email)
+    
+    let email = document.querySelector('#input-email').value.toLowerCase()
     try {
         const response = await fetch(`/update-account-email`, {
             method: 'POST',
@@ -54,17 +61,21 @@ btnActualizarEmail.addEventListener('click', async function() {
         });
         
         if (!response.ok) {
+            let data = await response.json()
+            emailError.textContent = data.errors.email
             throw new Error('Error al actualizar el correo');
         }
         
         // eliminar sesión, redirigir /home
         // window.location.href = '/account';
         
-        console.log('ok')
+        document.querySelector('#input-email').placeholder = email
+        document.querySelector('#input-email').value = ""
+
         showToast('Éxito', 'Tu correo se ha actualizado correctamente')
 
     } catch (error) {
-        console.error('Error al eliminar la cuenta:', error);
+        showToast('Error', 'Ha habido un error al cambiar tu correo')
         // Mostrar un mensaje de error al usuario
     }
 
@@ -128,8 +139,7 @@ confirmDeleteButton.addEventListener('click', async function () {
         // Ocultar el modal
         confirmModal.hide();
     } catch (error) {
-        console.error('Error al eliminar la cuenta:', error);
-        // Mostrar un mensaje de error al usuario
+        showToast('Error', 'Ha habido un error al eliminar la cuenta')
     }
     
 });

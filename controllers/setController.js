@@ -50,7 +50,6 @@ module.exports.postTrainningExercise = async (req, res) => {
         res.status(200).send('Exercise series updated successfully');
     } catch (error) {
         if (connection) await connection.rollback();
-        console.error('Error updating exercise series:', error);
         res.status(500).send('Internal server error');
     } 
 }
