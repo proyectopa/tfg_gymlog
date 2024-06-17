@@ -22,7 +22,7 @@ services:
     # directorio que ejecuta scripts al iniciar
     volumes:
       - "./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql"
-      - "./database/insert.sql:/docker-entrypoint-initdb.d/insert.sql"
+      # - "./database/insert.sql:/docker-entrypoint-initdb.d/insert.sql"
 
   node:
     build: .  # Ruta al Dockerfile de Node.js (en la raíz del proyecto)
